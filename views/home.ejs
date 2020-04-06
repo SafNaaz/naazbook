@@ -1,11 +1,15 @@
 <%- include('partials/header') -%>
 
 <h1>Home</h1>
-
-<p><%= startingContent %></p>
+<p><strong>Welcome to my blog</strong>
+</p>Posts : <strong><%=posts.length%></strong>
+<hr>
 <% posts.forEach((post)=>{%>
-<h1><%= post.title %></h1>
-<p><%= post.content.substring(0,100) +"..."%><a href="/posts/<%=post.title%>">Read More</a></p>
+<h3><%= post.title %></h3>
+<h6>posted on: <%= post.date%></h6>
+<p class="content"><%= post.content.substring(0,30) +"..."%><a href="/posts/<%=post.title%>">Read More</a></p>
+<h6><img src="/icons/like.svg" width="18" /> <strong><%= post.likes%></strong></h6>
+<hr>
 <% }) %>
 
 <%- include('partials/footer') -%>
