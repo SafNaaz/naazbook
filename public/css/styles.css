@@ -1,6 +1,6 @@
 body {
   width: 100%;
-  max-width: 850px;
+  /* max-width: 850px; */
   margin: auto;
 }
 
@@ -30,6 +30,16 @@ body {
   outline: 0;
 }
 
+.back-button {
+  border: none;
+  background-color: transparent;
+  outline: 0;
+}
+
+.back-button:hover {
+  color: blue;
+}
+
 .social {
   display: flex;
   flex-direction: row;
@@ -46,6 +56,11 @@ body {
 
 .sharelink:hover {
   filter: invert(0.5) sepia(1) saturate(5) hue-rotate(175deg);
+}
+a.login {
+  text-decoration: none;
+  color: #fff;
+  cursor: default;
 }
 
 .footer {

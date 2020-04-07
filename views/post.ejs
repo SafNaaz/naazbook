@@ -1,31 +1,62 @@
 <%- include('partials/header') -%>
-
-<h2 class="post-title"><%= post.title %></h2>
-<h5>posted on: <%= post.date%></h5>
+<a href="/">
+    Go back to All Posts</a>
+<h2 id="header"><%= post.title %></h2>
+<h5><i>posted on: </i><%= post.date%></h5>
 <hr>
 <p class="content"><%= post.content %></p>
-<hr>
+<br>
 <div class="social">
     <form action="/like" method="POST">
 
         <button class="like" type="submit" name="likes" value="<%=post.likes%>"><img class="like-button"
                 src="/icons/like.svg" width="18" /></button>
-        <input type="hidden" name="title" value="<%=post.title%>">
+        <input type="hidden" name="postId" value="<%=post._id%>">
+        <input type="hidden" name="postTitle" value="<%=post.title%>">
     </form>
     <h5 class="social-item"><strong><%= post.likes%></strong></h5>
+    <h5 class="social-item">Comments : <strong><%= post.comments.length%></strong></h5>
+    <%- include('partials/share') -%>
 </div>
+
+<hr>
+
+<%post.comments.forEach((comment)=>{%>
+<h4><%= comment.name %></h4>
+<h5><i>commented on: </i><%= comment.date%></h5>
+<p class="content"><%= comment.comment %></p>
 <div class="social">
-
-    <h5 class="social-item">Share to: </h5>
-    <div class="social-item" id="sharelinks">
-
-        <a onclick="buildURI(this)" href="https://www.facebook.com/sharer/sharer.php?u=" class="sharelink"
-            target="_blank" title="Facebook"><img src="/icons/002-facebook.svg" width="18" /></a>
-        <a onclick="buildURI(this)" href="https://wa.me/?text=" class="sharelink" target="_blank" title="WhatsApp"><img
-                src="/icons/006-whatsapp.svg" width="18"></a>
-        <a onclick="buildURI(this)" href="mailto:?" class="sharelink" target="_blank" title="Mail"><img
-                src="/icons/envelope.svg" width="18"></a>
-    </div>
+    <form action="/likeComment" method="POST">
+        <button class="like" type="submit" name="likes" value="<%=comment.likes%>"><img class="like-button"
+                src="/icons/like.svg" width="18" /></button>
+        <input type="hidden" name="commentId" value="<%=comment._id%>">
+        <input type="hidden" name="postId" value="<%=post._id%>">
+        <input type="hidden" name="postTitle" value="<%=post.title%>">
+    </form>
+    <h5 class="social-item"><strong><%= comment.likes%></strong></h5>
 </div>
+<hr>
+<%})%>
+
+<form action="/comment" method="POST">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input class="form-control" type="text" name="name" placeholder="Your Name">
+        <label for="comments">Comment</label>
+        <textarea class="form-control" name="comment" id="" cols="5" rows="2" placeholder="Your Comment"></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit" name="button">Add Comment</button>
+    <input type="hidden" name="postId" value="<%=post._id%>">
+    <input type="hidden" name="postTitle" value="<%=post.title%>">
+
+</form>
+
+<br>
+
+<%- include('partials/share') -%>
+<br>
+
+<a href="/">
+    Go back to All Posts</a>
 
 <%- include('partials/footer') -%>

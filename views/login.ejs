@@ -1,0 +1,17 @@
+<%- include('partials/header') -%>
+
+<h1>Login</h1>
+
+<form action="/login" method="POST">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input class="form-control" id="username" type="text" name="username">
+        <label for="password">Password</label>
+        <input class="form-control" id="password" type="password" name="password">
+    </div>
+    <button class="btn btn-primary" type="submit" name="button">Login</button>
+</form>
+<br>
+<%- include('partials/goBack') -%>
+
+<%- include('partials/footer') -%>

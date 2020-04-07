@@ -4,11 +4,16 @@
 <form action="/compose" method="POST">
     <div class="form-group">
         <label for="title">Title</label>
-        <input class="form-control" id="title" type="text" name="postTitle">
+        <input required placeholder="Please give a unique title" class="form-control" id="title" type="text"
+            name="postTitle">
         <label for="post">Post</label>
-        <textarea class="form-control" id="post" type="textarea" name="postBody" rows="5" cols=30></textarea>
+        <textarea required placeholder="Give Proper Styling" class="form-control" id="post" type="textarea"
+            name="postBody" rows="5" cols=30></textarea>
     </div>
     <button class="btn btn-primary" type="submit" name="button">Publish</button>
+    <input type="button" class="btn btn-primary" value="Cancel" onclick="goBack()">
 </form>
+<br>
+
 
 <%- include('partials/footer') -%>

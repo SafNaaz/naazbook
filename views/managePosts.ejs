@@ -1,0 +1,33 @@
+<%- include('partials/header') -%>
+
+<h1>Edit/Remove</h1>
+</p>Posts : <strong><%=posts.length%></strong>
+<br><br>
+<a href="/manage">
+    Go back to Manage Posts</a>
+<hr>
+<% posts.forEach((post)=>{%>
+<h3><%= post.title %></h3>
+<h6>posted on: <%= post.date%></h6>
+<p class="content"><%= post.content.substring(0,30) +"..."%></p>
+<h6><img src="/icons/like.svg" width="18" /> <strong><%= post.likes%></strong></h6>
+<div class="social">
+
+    <form action="/edit" method="POST">
+        <button type="submit" name="title" value="<%=post.title%>">edit</button>
+        <input type="hidden" name="content" value="<%=post.content%>">
+        <input type="hidden" name="postId" value="<%=post._id%>">
+    </form>
+    &ensp;
+    <form action="/delete" method="POST">
+        <button type="submit" name="postId" value="<%=post._id%>">delete</button>
+    </form>
+</div>
+<hr>
+<% }) %>
+
+
+<a href="/manage">
+    Go back to Manage Posts</a>
+
+<%- include('partials/footer') -%>

@@ -1,14 +1,18 @@
 <%- include('partials/header') -%>
 
 <h1>Home</h1>
-<p><strong>Welcome to my blog</strong>
+<p><strong>Welcome to NaaZ Book, Have fun!</strong>
 </p>Posts : <strong><%=posts.length%></strong>
 <hr>
 <% posts.forEach((post)=>{%>
 <h3><%= post.title %></h3>
-<h6>posted on: <%= post.date%></h6>
+<h6><i>posted on: </i><%= post.date%></h6>
 <p class="content"><%= post.content.substring(0,30) +"..."%><a href="/posts/<%=post.title%>">Read More</a></p>
-<h6><img src="/icons/like.svg" width="18" /> <strong><%= post.likes%></strong></h6>
+<div class="social">
+    <h6 class="social-item"><img src="/icons/like.svg" width="18" /></h6>
+    <h6 class="social-item"><strong><%= post.likes%></strong></h6>
+    <h6 class="social-item">Comments : <strong><%= post.comments.length%></strong></h6>
+</div>
 <hr>
 <% }) %>
 
