@@ -8,10 +8,10 @@ Features:
 
 * User can View, add Comments, Like and Share Posts
 * Blog Owner can go to a secret page to manage posts (delete/edit posts)
-
-More features coming
-
 * Owner can delete comments
-* Users can like comments
+* User's comments also can be liked
+
+More features..
+
 * Dark mode
 * Passport.js authentication
