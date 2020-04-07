@@ -1,19 +1,28 @@
 <%- include('partials/header') -%>
+<div class="profile">
 
-<h1>Home</h1>
-<p><strong>Welcome to NaaZ Book, Have fun!</strong>
-</p>Posts : <strong><%=posts.length%></strong>
-<hr>
-<% posts.forEach((post)=>{%>
-<h3><%= post.title %></h3>
-<h6><i>posted on: </i><%= post.date%></h6>
-<p class="content"><%= post.content.substring(0,30) +"..."%><a href="/posts/<%=post.title%>">Read More</a></p>
-<div class="social">
-    <h6 class="social-item"><img src="/icons/like.svg" width="18" /></h6>
-    <h6 class="social-item"><strong><%= post.likes%></strong></h6>
-    <h6 class="social-item">Comments : <strong><%= post.comments.length%></strong></h6>
+    <h3>Welcome to my Blog! Have fun!</h3>
+    <img class="dp" src="/photo/Safnas.jpeg" alt="">
 </div>
-<hr>
+</p>Posts : <strong><%=posts.length%></strong>
+<br><br>
+
+<% posts.forEach((post)=>{%>
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title"><%= post.title %></h3>
+        <h6 class="card-subtitle">Posted on: <%= post.date%></h6>
+        <br>
+        <p class="card-text" class="content"><%= post.content.substring(0,30) +"..."%><a
+                href="/posts/<%=post.title%>">Read More</a></p>
+        <div class="social">
+            <p class="social-item"><img src="/icons/like.svg" width="18" /></p>
+            <p class="social-item"><strong><%= post.likes%></strong></p>
+            <p class="social-item">Comments : <strong><%= post.comments.length%></strong></p>
+        </div>
+    </div>
+</div>
+<br>
 <% }) %>
 
 <%- include('partials/footer') -%>

@@ -86,13 +86,27 @@ router.post('/likeComment', (req, res) => {
     const commentId = req.body.commentId;
     const postId = req.body.postId;
     const title = req.body.postTitle;
+    const likes = (!req.body.likes) ? 1 : Number.parseInt(req.body.likes) + 1;
 
-    const likes = Number.parseInt(req.body.likes) + 1;
-    Post.findOneAndUpdate({ _id: postId }, { $set: { likes: likes } }, (err) => {
-        if (!err) {
-            console.log('updated successfully')
-        }
-    }).then(res.redirect('/posts/' + title));
+    Post.updateOne({ _id: postId, comments: { $elemMatch: { _id: commentId } } }, { $set: { "comments.$.likes": likes } }).catch(err => {
+        console.log('error while updating' + err)
+    }).then(() => {
+        res.redirect('/posts/' + title)
+    })
+})
+
+router.post('/deleteComment', (req, res) => {
+    console.log(req.body.post)
+    const post = JSON.parse(req.body.post);
+    const commentId = req.body.commentId;
+    console.log(commentId)
+    Post.update({ _id: post._id }, { $pull: { comments: { _id: commentId } } })
+        .catch(err => {
+            console.log('error while updating' + err)
+        }).then(() => {
+            post.comments.pop(commentId);
+            res.render('edit', { post: post })
+        })
 })
 
 
@@ -152,14 +166,7 @@ router.post('/login', (req, res) => {
 })
 
 router.post('/edit', (req, res) => {
-    const title = req.body.title;
-    const content = req.body.content;
-    const postId = req.body.postId;
-    const post = {
-        title: title,
-        content: content,
-        postId: postId
-    }
+    const post = JSON.parse(req.body.post);
     res.render('edit', { post: post })
 })
 

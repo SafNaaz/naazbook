@@ -1,29 +1,36 @@
 <%- include('partials/header') -%>
 
-<h1>Edit/Remove</h1>
+<h3>Edit/Remove</h3>
 </p>Posts : <strong><%=posts.length%></strong>
 <br><br>
 <a href="/manage">
     Go back to Manage Posts</a>
-<hr>
+<br><br>
 <% posts.forEach((post)=>{%>
-<h3><%= post.title %></h3>
-<h6>posted on: <%= post.date%></h6>
-<p class="content"><%= post.content.substring(0,30) +"..."%></p>
-<h6><img src="/icons/like.svg" width="18" /> <strong><%= post.likes%></strong></h6>
-<div class="social">
 
-    <form action="/edit" method="POST">
-        <button type="submit" name="title" value="<%=post.title%>">edit</button>
-        <input type="hidden" name="content" value="<%=post.content%>">
-        <input type="hidden" name="postId" value="<%=post._id%>">
-    </form>
-    &ensp;
-    <form action="/delete" method="POST">
-        <button type="submit" name="postId" value="<%=post._id%>">delete</button>
-    </form>
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title"><%= post.title %></h3>
+        <h6 class="card-subtitle">posted on: <%= post.date%></h6>
+        <br>
+        <p class="card-text" class="content"><%= post.content.substring(0,30) +"..."%></p>
+        <div class="social">
+            <p class="social-item"><img src="/icons/like.svg" width="18" /> <strong><%= post.likes%></strong></p>
+            <p class="social-item">Comments : <strong><%= post.comments.length%></strong></p>
+        </div>
+        <div class="social">
+            <form action="/edit" method="POST">
+                <button type="submit" class="btn btn-primary" name="post"
+                    value="<%=JSON.stringify(post)%>">edit</button>
+            </form>
+            &ensp;
+            <form action="/delete" method="POST">
+                <button type="submit" class="btn btn-primary" name="postId" value="<%=post._id%>">delete</button>
+            </form>
+        </div>
+    </div>
 </div>
-<hr>
+<br>
 <% }) %>
 
 

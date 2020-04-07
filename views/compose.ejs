@@ -1,11 +1,11 @@
 <%- include('partials/header') -%>
 
-<h1>Compose</h1>
+<h3>Compose</h3>
 <form action="/compose" method="POST">
     <div class="form-group">
         <label for="title">Title</label>
         <input required placeholder="Please give a unique title" class="form-control" id="title" type="text"
-            name="postTitle">
+            name="postTitle" autocomplete="off">
         <label for="post">Post</label>
         <textarea required placeholder="Give Proper Styling" class="form-control" id="post" type="textarea"
             name="postBody" rows="5" cols=30></textarea>

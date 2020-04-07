@@ -1,49 +1,62 @@
 <%- include('partials/header') -%>
+
 <a href="/">
     Go back to All Posts</a>
-<h2 id="header"><%= post.title %></h2>
-<h5><i>posted on: </i><%= post.date%></h5>
-<hr>
-<p class="content"><%= post.content %></p>
+<br> <br>
+
+<div class="card">
+    <div class="card-body">
+        <h3 id="header" class="card-title"><%= post.title %></h3>
+        <h5 class="card-subtitle">Posted on: <%= post.date%></h5>
+        <br>
+        <p class="card-text content"><%= post.content%>></p>
+    </div>
+</div>
+
 <br>
 <div class="social">
     <form action="/like" method="POST">
 
-        <button class="like" type="submit" name="likes" value="<%=post.likes%>"><img class="like-button"
-                src="/icons/like.svg" width="18" /></button>
+        <p class="social-item"> <button class="like" type="submit" name="likes" value="<%=post.likes%>"><img
+                    class="like-button icon" src="/icons/like.svg"
+                    width="18" /></button><strong><%= post.likes%></strong></p>
         <input type="hidden" name="postId" value="<%=post._id%>">
         <input type="hidden" name="postTitle" value="<%=post.title%>">
     </form>
-    <h5 class="social-item"><strong><%= post.likes%></strong></h5>
-    <h5 class="social-item">Comments : <strong><%= post.comments.length%></strong></h5>
-    <%- include('partials/share') -%>
+
+    <p class="social-item"><%- include('partials/share') -%></p>
 </div>
 
-<hr>
 
+<h4> <strong>Comments</strong> (<%= post.comments.length%>) </h4>
+<hr>
 <%post.comments.forEach((comment)=>{%>
 <h4><%= comment.name %></h4>
-<h5><i>commented on: </i><%= comment.date%></h5>
-<p class="content"><%= comment.comment %></p>
-<div class="social">
-    <form action="/likeComment" method="POST">
-        <button class="like" type="submit" name="likes" value="<%=comment.likes%>"><img class="like-button"
-                src="/icons/like.svg" width="18" /></button>
+<h6><%= comment.date%></h6>
+<p><i><%= comment.comment %></i></p>
+
+<form action="/likeComment" method="POST">
+    <div class="social">
+        <p class="social-item"> <button class="like" type="submit" name="likes" value="<%=comment.likes%>"><img
+                    class="like-button icon" src="/icons/like.svg"
+                    width="18" /></button><strong><%= comment.likes%></strong> </p>
+
         <input type="hidden" name="commentId" value="<%=comment._id%>">
         <input type="hidden" name="postId" value="<%=post._id%>">
         <input type="hidden" name="postTitle" value="<%=post.title%>">
-    </form>
-    <h5 class="social-item"><strong><%= comment.likes%></strong></h5>
-</div>
+
+    </div>
+</form>
+
 <hr>
 <%})%>
 
 <form action="/comment" method="POST">
     <div class="form-group">
         <label for="name">Name</label>
-        <input required class="form-control" type="text" name="name" placeholder="Your Name">
+        <input class="form-control" type="text" name="name" placeholder="Your Name" autocomplete="off">
         <label for="comments">Comment</label>
-        <textarea required class="form-control" name="comment" id="" cols="5" rows="2" placeholder="Your Comment"></textarea>
+        <textarea class="form-control" name="comment" id="" cols="5" rows="2" placeholder="Your Comment"></textarea>
     </div>
     <button class="btn btn-primary" type="submit" name="button">Add Comment</button>
     <input type="hidden" name="postId" value="<%=post._id%>">
@@ -54,8 +67,6 @@
 <br>
 
 <%- include('partials/share') -%>
-<br>
-
 <a href="/">
     Go back to All Posts</a>
 
