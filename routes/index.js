@@ -133,8 +133,8 @@ router.post('/update', (req, res) => {
     Post.findOneAndUpdate({ _id: req.body.postId }, {
         $set: {
             title: req.body.postTitle,
-            date: today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear(),
-            content: req.body.postBody,
+            //date: today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear(),
+            content: req.body.postBody
         }
     }
     ).then(res.redirect('/delete')).catch((err) => { console.log(err) })
