@@ -123,7 +123,7 @@ router.get('/delete', (req, res) => {
         } else {
             res.render('managePosts', { posts: posts })
         }
-    })
+    }).sort({date :-1})
 
 })
 
