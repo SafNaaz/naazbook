@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
         } else {
             res.render('home', { posts: posts })
         }
-    })
+    }).sort({date :-1})
 })
 
 router.get('/about', (req, res) => {
