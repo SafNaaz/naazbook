@@ -1,6 +1,6 @@
 # NaaZbook
 
-Hosted on https://naazbook.herokuapp.com/
+
 
 A fully equipped responsive blog site using ejs and express and mongoDB atlas
 
